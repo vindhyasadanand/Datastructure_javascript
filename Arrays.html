@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation of Array </title>
+</head>
+<body>
+    <script>
+//class acts as template using this we can create many objects
+//Arrays are referred as objects in javascript
+class myArray{
+       constructor(){
+    //constructors are used it initialize the data members
+    this.data = {};//this refers instance variables
+    this.length = 0;
+       }
+       getElement(index){
+           return this.data[index];
+       }
+       //to push the elements in to the array
+       push(item){
+           this.data[this.length]=item;
+           this.length++;
+
+       }
+       //pop is used to delete or remove last element from array
+       pop(){
+           const lastItem = this.data[this.length-1];
+           delete this.data[this.length-1];
+           this.length--;
+           return lastItem;
+       }
+       delete(index){
+           const deleted = this.data[index];
+           for(let i=index;i<this.length-1;i++){
+               this.data[index] = this.data[index+1];
+               }
+               delete this.data[this.length-1];
+               this.length--;
+               return deleted;
+       }
+    }
+  const  obj1 = new myArray();
+  obj1.push(18);
+  obj1.push("vindhya");
+  obj1.push(56);
+  console.log(obj1);
+console.log(obj1.getElement(0));
+console.log(obj1.pop());//deletes last item
+console.log(obj1);
+console.log(obj1.delete(1));
+console.log(obj1);
+   
+    </script>
+</body>
+</html>
