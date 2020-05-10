@@ -18,7 +18,7 @@ class myArray{
        getElement(index){
            return this.data[index];
        }
-       //to push the elements in to the array
+       //to push the elements at the end of the array
        push(item){
            this.data[this.length]=item;
            this.length++;
@@ -31,6 +31,7 @@ class myArray{
            this.length--;
            return lastItem;
        }
+       //to delete elements from any random position
        delete(index){
            const deleted = this.data[index];
            for(let i=index;i<this.length-1;i++){
