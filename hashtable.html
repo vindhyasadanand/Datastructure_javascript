@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class hashTable{
+  constructor(size){
+    //here i created array having given number of elements
+    this. data = new Array(size);
+  }
+
+_hash(key)
+{
+  let hash = 0;
+  for(let i=0;i<key.length;i++)
+  {
+   hash = (hash+key.charCodeAt(i)*i)%this.data.length;
+   console.log(hash);
+  }
+  return hash;
+}
+set(key,value)
+{
+  //to get the address where we place to key we are calling this method
+  let address = this._hash(key);
+  //once we get the address we are checking any thing is present in that address
+  if(!this.data[address])
+  {
+    this.data[address] =[];
+  }
+this.data[address].push([key,value]);
+return this.data
+}
+get(key)
+{
+  let address = this._hash(key);
+  const currentBucket = this.data[address];
+  if(currentBucket)
+  {
+     for(let i=0;i<currentBucket.length;i++)
+     {
+        if(currentBucket[i][0]===key)
+        {
+             return currentBucket[i][1];
+        }
+     }
+  }
+  return undefined;
+
+}
+//to go through all the keys in hash table
+keys(){
+const keys = [];
+for(let i=0;i<this.data.length;i++)
+{
+  if(this.data[i]){
+  
+    keys.push(this.data[i][0][0]);
+  }
+}
+return keys;
+}
+}
+const myHashTable = new hashTable(50);
+myHashTable.set('grapes',1000);
+myHashTable.set('apples',900);
+
+myHashTable.set('rose',5000);
+myHashTable.set('banana',2000);
+
+
+myHashTable.keys();
+
+    </script>
+</body>
+</html>
