@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       class linkedList{
+           //constructor inorder to create first linkedlist
+           constructor(value){
+               this.head = {
+                   value:value,
+                   next:null
+               }
+               //initially only one node will be present and head and tail are same
+               this.tail =  this.head;
+               this.length = 1;
+            }
+            //append is used to add at the end of the list
+            append(value)
+            {
+                const newNode = {
+                    value:value,
+                    next:null
+                };
+                this.tail.next = newNode;
+                this.tail = newNode;
+                this.length++;
+                return this;
+
+            }
+            prepend(value)
+            {
+                const newNode = {
+                    value:value,
+                    next: null
+                };
+                newNode.next = this.head;
+                this.head = newNode;
+                this.length++
+                return this;
+             
+            }
+            printList(){
+                const array = [];
+                let currentNode = this.head;
+                while(currentNode!==null)
+                {
+                    array.push(currentNode.value);
+                    currentNode=currentNode.next;
+                }
+                return array;
+            }
+            insert(index,value)
+            {
+                if(index>=this.length)
+                {
+                    return this.append(value);
+                }
+                const newNode = {
+                    value:value,
+                    next:null
+                };
+                
+            }
+       }
+        
+        const myList = new linkedList(3);
+     myList.append(8);
+     myList.prepend(1);
+     myList.printList();
+     
+        console.log(myList);
+    </script>
+</body>
+</html>

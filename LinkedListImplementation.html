@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>linked list is a ordered collection of data collection contains separate nodes
+        Head and Tail are the two special nodes that we always see.
+    Tail node can be identified by a fact that it does not have reference to any other node.
+node contains data bucket it can be a number an array an object and other part of the node is the reference to the next nodes </p>
+  <p></p>
+  <script>
+  class Node{
+  constructor(value,next = null)
+  {
+    this.value = value;
+    this.next = next;
+
+  }
+}
+/*
+linked list class will contain class contains only one property called head and this class also contains some methods but it will not bother about how many nodes are present in the list
+and initially the value of head will be null
+*/
+class LinledList
+{
+   constructor(){
+     this.head = null;
+   }
+   insertFirst(data)
+   {
+     //to create new node
+     const node = new Node(data,this.head);
+      this.head = node;
+   }
+   size()
+   {
+     let count = 0
+     let node = this.head;
+    
+       while(node!==null)
+       {
+         node = node.next;
+         count++;
+       }
+      console.log(count);
+     }
+     getFirst()
+     {
+        return this.head;
+       
+    }
+    getLast()
+    {
+      if(!this.head)
+      {
+        return null;
+      }
+      let node = this.head;
+      while(node!==null)
+      {
+            if(node.next==null)
+            {
+              return node;
+            }
+        node = node.next;
+      }
+      return node;
+    }
+    //clearmethod is used to completely empty out our linkedlist
+    clear(){
+      //we cleared entire list
+      this.head = null;
+    }
+    removeFirst()
+    {
+      if(this.head==null)
+      {
+        console.log("empty list")
+        return;
+      }
+      //if only one node is prsent
+      else if(this.head.next==null)
+      {
+        this.head = null;
+        
+      }
+      //more than one nodes are present
+      else
+      {
+        this.head = this.head.next;
+      }
+    }
+    removeLast()
+    {
+      
+      if(this.head == null)
+      {
+        return;
+      }
+      //one node is present 
+      else if(this.head.next==null)
+      {
+       this.head = null;
+       return; 
+      }
+      else
+      { 
+        let previous = this.head;
+        let node = this.head.next;
+        while(node!==null)
+        {
+          previous = node;
+           node = node.next;
+        }
+    previous.next = null;
+    return this.head;
+      }
+    }
+    //to insert at the end of the list
+    insertLast(value)
+    {
+      const last = this.getLast();
+       const Newnode = new Node(value);
+      if(last)
+      {
+          
+          last.next =Newnode;
+      }
+        else 
+        {
+            this.head = Newnode;
+        }
+        return this.head;
+    }
+    GetAt(index){
+     let count = 0;
+      let node = this.head;
+      while(node!=null)
+      {
+        if(count==index)
+        {
+          return node;
+
+        }
+        node = node.next;
+        count++;
+      }
+    return null;
+    }
+    removeAt(index)
+    {  
+      if(this.head==null)
+      {
+        return null;
+      }
+      if(index==0)
+      {
+        this.head = this.head.next;
+        return;
+      }
+        const previous = this.GetAt(index - 1);
+        if(previous == null || previous.next == null)
+        {
+          console.log("undefined position");
+          return;
+        }
+        previous.next = previous.next.next;
+        return this.head;
+      }
+      /*
+     -> consider the senario that node is completely empty
+     ->consider the situation index that we provided is completely outof bound
+     
+      */
+      insertAt(index,data)
+      {
+         if(this.head == null)
+         {
+           this.head = new Node (data);
+           return;
+         }
+        else if(index == 0)
+         {
+           this.head = new node(data,this.head);
+
+         }
+          else
+          {
+           
+             const previous = this.GetAt(index-1)|| this.getLast();
+              let node = new Node(data,previous.next);
+             previous.next = node;
+             
+          }
+          return this.head;
+      }
+    }
+
+//const oneNode = new Node(10);
+const list = new LinledList();
+//list.head = oneNode;
+//list.insertFirst(5);
+//list.insertFirst(1);
+//list.insertFirst(6);
+//console.log(list.getFirst());
+//console.log(list.getLast());
+//console.log(list.clear());
+//list.size();
+//console.log(list.removeLast());
+//console.log(list.removeFirst())
+//console.log(list.insertLast(8));
+//console.log(list.insertLast(9));
+//list.insertLast(9)
+list.insertLast(7)
+
+//console.log(list.GetAt(1));
+//console.log(list.removeAt(10));
+console.log(list.insertAt(6,15))
+   </script> 
+</body>
+</html>
